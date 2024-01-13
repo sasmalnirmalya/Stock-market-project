@@ -1,0 +1,15 @@
+<div class="home">
+  <ngb-carousel *ngIf="images" [showNavigationArrows]="showNavigationArrows"
+	 [showNavigationIndicators]="showNavigationIndicators">
+        <ng-template ngbSlide *ngFor="let item of templates">
+            <div [ngClass]="{'card':true, 'bg-color-1': item==1, 'bg-color-2':item==2, 'bg-color-3':item==3}" >
+                <div class="card-body">
+                  <app-home-indices *ngIf="item==1"></app-home-indices>
+                  <app-top-performers *ngIf="item==2"></app-top-performers>
+                  <app-loosers *ngIf="item==3"></app-loosers>   
+                </div>
+            </div>
+        </ng-template>
+ </ngb-carousel>
+</div>
+

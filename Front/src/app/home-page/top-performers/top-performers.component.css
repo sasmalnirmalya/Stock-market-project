@@ -1,0 +1,9 @@
+.negative{
+    background-color:hsl(0, 89%, 83%);
+    color: red;
+}
+
+.positive{
+    color: green;
+    background-color: rgb(199, 247, 199);
+}

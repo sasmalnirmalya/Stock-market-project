@@ -1,0 +1,27 @@
+
+<ng-container *ngIf="!isLoggedIn">
+	<a href="javascript:void(0)" (click)="openLogin()">Login</a>
+</ng-container>
+
+<ng-container *ngIf="isLoggedIn">
+	<a id="profile-icon" (clickedOutside)="handleClick($event)" appClickOutside  >
+		<img src="..\..\..\assets\blank-profile.png" class="circular-image">
+		<span class="profile-text">Profile</span>
+	</a>	
+</ng-container>
+
+<ng-container *ngIf="showOptionsCard">
+	<div id="options-card">
+		<div class="option" (click)="handleOptionClick('settings')">View Profile</div>
+		<div class="option" (click)="handleOptionClick('settings')">Settings</div>
+		<div class="option" (click)="handleOptionClick('logout')">Logout</div>
+	</div>
+</ng-container>
+
+<app-login #login (redirectSignUp)="openSignUp()"></app-login>
+<app-signup #signUp (redirectLogin)="openLogin()"></app-signup>
+
+
+
+
+<!-- [attr.aria-expanded]="!isCollapsed" -->

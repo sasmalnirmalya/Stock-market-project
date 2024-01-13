@@ -1,0 +1,24 @@
+<h5 class="card-title text-center">Indices</h5>
+<table class="table" style="background-color:darkslategray;">
+	<thead>
+		<tr>
+			<th scope="col" style="background-color: beige;">Exchange</th>
+			<th scope="col" style="background-color: beige;">Current Price</th>
+			<th scope="col" style="background-color: beige;">Change</th>
+			<th scope="col" style="background-color: beige;">% Change</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let item of indices; index as i">
+			<td style="background-color: beige;">
+				{{ item.index }}
+			</td>
+			<td style="background-color: beige;">{{ item.price | number }}</td>
+			<td [ngClass]="{'positive':item.PrcntChng>0, 'negative':item.PrcntChng<=0}">{{ item.change | number }}</td>
+			<td [ngClass]="{'positive':item.PrcntChng>0, 'negative':item.PrcntChng<=0}">{{item.PrcntChng}}%</td>
+		</tr>
+	</tbody>
+</table>
+
+  
+  

@@ -1,0 +1,8 @@
+a:link{
+    text-decoration: none;
+}
+
+.form-control:focus{
+    border: 1px solid green;
+    box-shadow: none;
+  }

@@ -1,0 +1,27 @@
+
+<div class="card" style="width: 90%;margin: auto;margin-top: 20px;">
+        <div class="col-6">
+            <label>Select Index : </label>
+            <select>
+                <option value="index1"> Index 1</option>
+                <option value="index2"> Index 2</option>
+                <option value="index3"> Index 3</option>
+                <option value="index4"> Index 4</option>
+            </select>
+        </div>
+            
+</div>
+
+<div style="width: 90%;margin: auto;">
+    <mat-card>
+        <ag-grid-angular style="width: 100%; height: 400px;" class="ag-theme-balham-dark" 
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+        [getContextMenuItems]="getContextMenuItems"
+        [defaultColDef]="defaultColDef"
+        [enableRangeSelection]="true"
+        [pinnedTopRowData]="pinnedTopRowData"
+        >
+        </ag-grid-angular>
+    </mat-card>
+</div>
