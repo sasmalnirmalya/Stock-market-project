@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output, TemplateRef, ViewChild, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CopyUserIdModalComponent } from 'src/app/Modals/copy-user-id-modal/copy-user-id-modal.component';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class SignupComponent implements OnInit {
 
   signUpForm!: FormGroup;
   @ViewChild('signUp')signUp: any;
+  @ViewChild('copyUserId')copyUserId:CopyUserIdModalComponent | undefined;
   @Output() redirectLogin:EventEmitter<any>= new EventEmitter;
 
   constructor(private apiService: AuthenticationService) { }
@@ -54,12 +56,15 @@ export class SignupComponent implements OnInit {
 	}
 
 	onSignUp(){
-		this.apiService.signUp(this.signUpForm?.value).subscribe((res)=>{
-			console.log(res)
+		this.apiService.signUp(this.signUpForm?.value).subscribe((res:any)=>{
+			this.apiService.setUserDetails({fName:res.fName, lName: res.lName, user_id: res.user_id});
+			this.apiService.setToken(res['Auth Token']);
+			this.copyUserId?.openCopy(res['user_id']);
 		},
 		(err)=>{
-			console.log(err)
-		});
+			
+		});	
+		
 	}
 
 }

@@ -6,7 +6,7 @@
 <ng-container *ngIf="isLoggedIn">
 	<a id="profile-icon" (clickedOutside)="handleClick($event)" appClickOutside  >
 		<img src="..\..\..\assets\blank-profile.png" class="circular-image">
-		<span class="profile-text">Profile</span>
+		<span class="profile-text">{{userName}}</span>
 	</a>	
 </ng-container>
 

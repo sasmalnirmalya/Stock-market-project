@@ -20,7 +20,8 @@ router.post('/users/signup',async (req,res)=>{
         const authToken = jwt.sign(newUuid, secretKey);
         const [user, row] = await pool.execute('INSERT INTO users (user_id, First_Name, Last_Name, password,Auth_token) VALUES (?, ?, ?, ?,?)',
             [newUuid, req.body.firstName, req.body.lastName, password, authToken]);
-        return res.status(200).send({'Auth Token':authToken});
+        console.log(user);
+        return res.status(200).send({'Auth Token':authToken , fName: req.body.firstName, lName: req.body.lastName, user_id: newUuid});
     }
     catch (err){
         res.status(400).send(err);
@@ -35,7 +36,7 @@ router.post('/users/login',async (req,res)=>{
         const isMatch = await bcrypt.compareSync(req.body.password, user.password);
         if (isMatch) {
             const authToken = await generateAuthToken(user);
-            return res.status(200).send({'Auth Token':authToken});
+            return res.status(200).send({'Auth Token':authToken , fName: user.firstName, lName: user.lastName, user_id: user.user_id});
         }
         else{
             res.status(400).send('invalid Credentials');

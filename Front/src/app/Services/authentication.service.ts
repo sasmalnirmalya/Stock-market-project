@@ -48,12 +48,22 @@ export class AuthenticationService implements OnInit {
   // Remove the token from local storage (logout)
   removeToken(): void {
     localStorage.removeItem(this.authTokenKey);
+    localStorage.removeItem('User Details');
     this.dataSubject.next(false);
   }
 
   // Check if the token exists in local storage
   isTokenExists(): boolean {
     return !!this.getToken();
+  }
+
+  setUserDetails(user:any){
+    localStorage.setItem('User Details', JSON.stringify(user));
+  }
+
+  getUserDetails():any{
+    let item:any= localStorage.getItem('User Details');
+    return JSON.parse(item);
   }
 
 }

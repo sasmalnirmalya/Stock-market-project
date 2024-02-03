@@ -13,6 +13,7 @@ export class ProfileComponent implements OnInit {
 
   public isCollapsed = true;
   isLoggedIn:boolean=false;
+  userName:string='Profile'
   
   @ViewChild('login')login:LoginComponent | undefined;
   @ViewChild('signUp')signUp:LoginComponent | undefined;
@@ -23,7 +24,9 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.authService.data$.subscribe((res)=>{
       this.isLoggedIn=res;
-      console.log(res);
+      if(res){
+        this.userName=this.authService.getUserDetails().fName;
+      }
     })
   }
 

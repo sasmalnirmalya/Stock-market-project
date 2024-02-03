@@ -57,8 +57,9 @@ export class LoginComponent implements OnInit {
 	onLogin(){
 
 		this.apiService.login(this.loginForm?.value).subscribe({
-			next: (x:any)=> {
-				this.apiService.setToken(x['Auth Token']);
+			next: (res:any)=> {
+				this.apiService.setUserDetails({fName:res.fName, lName: res.lName, user_id: res.user_id});
+				this.apiService.setToken(res['Auth Token']);
 				this.modalService.dismissAll('Save click');
 			},
 			error: (err)=> {
