@@ -11,7 +11,7 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
 export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
-  failedLogin=true;
+  failedLogin=false;
   //signUpForm: FormGroup;
   @ViewChild('login')login: any;
   @Output() redirectSignUp:EventEmitter<any>= new EventEmitter;
@@ -57,11 +57,12 @@ export class LoginComponent implements OnInit {
 	onLogin(){
 
 		this.apiService.login(this.loginForm?.value).subscribe({
-			next(x) {
-				
-			  },
-			error(err) {
-				console.log('something wrong occurred: ' + err);
+			next: (x:any)=> {
+				this.apiService.setToken(x['Auth Token']);
+				this.modalService.dismissAll('Save click');
+			},
+			error: (err)=> {
+				this.failedLogin=true;
 			  },
 		});
 	}

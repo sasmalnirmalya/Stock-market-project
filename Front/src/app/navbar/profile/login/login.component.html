@@ -5,15 +5,15 @@
 	</div>
 	<div class="modal-body">
 		<form [formGroup]="loginForm">
-			<div class="">
+			<div class="mb-1">
 				<input class="input-custom form-control form-control-sm mb-3" type="text" placeholder="User Id" formControlName="userId">
 				<input class="form-control form-control-sm " type="password" placeholder="password" formControlName="password">
 			</div>
-			<span *ngIf="failedLogin" >Invalid credentials !! Try again</span>
+			<span *ngIf="failedLogin" style="color: crimson;">Invalid credentials !! Please try again</span>
 		</form>
 	</div>
 	<div class="modal-footer">
 		<span style="font-size: smaller;">Don't have an account ?<a href="javascript:void(0)" (click)="redirectToSignUp();modal.dismiss('Cross click')"> Sign up</a></span>
-		<button type="button" class="btn btn-sm btn-outline-dark" (click)="onLogin();modal.close('Save click')" [disabled]="!loginForm.valid">Login</button>
+		<button type="button" class="btn btn-sm btn-outline-dark" (click)="onLogin();" [disabled]="!loginForm.valid">Login</button>
 	</div>
 </ng-template>

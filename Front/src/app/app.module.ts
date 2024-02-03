@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CanvasJSAngularStockChartsModule } from '@canvasjs/angular-stockcharts';
 import { HighchartsChartModule } from 'highcharts-angular';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AgGridModule } from 'ag-grid-angular';
@@ -30,6 +30,8 @@ import { ClickOutsideDirective } from './Directives/click-outside.directive';
 import { LoginComponent } from './navbar/profile/login/login.component';
 import { SignupComponent } from './navbar/profile/signup/signup.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { AuthInterceptor } from './auth.interceptor';
+import { CopyUserIdModalComponent } from './Modals/copy-user-id-modal/copy-user-id-modal.component';
 
 
 
@@ -52,6 +54,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     ClickOutsideDirective,
     LoginComponent,
     SignupComponent,
+    CopyUserIdModalComponent,
     
   ],
   imports: [
@@ -68,7 +71,13 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     ReactiveFormsModule,
     NgMultiSelectDropDownModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

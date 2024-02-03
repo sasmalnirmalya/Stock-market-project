@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit, TemplateRef, ViewChild, inject } from 
 import { FormGroup } from '@angular/forms';
 import { ModalDismissReasons, NgbDatepickerModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 
 @Component({
   selector: 'app-profile',
@@ -17,9 +18,13 @@ export class ProfileComponent implements OnInit {
   @ViewChild('signUp')signUp:LoginComponent | undefined;
 
 
-  constructor() { }
+  constructor(private authService: AuthenticationService) { }
 
   ngOnInit(): void {
+    this.authService.data$.subscribe((res)=>{
+      this.isLoggedIn=res;
+      console.log(res);
+    })
   }
 
   showOptionsCard = false;
@@ -49,6 +54,12 @@ export class ProfileComponent implements OnInit {
 
   openSignUp(){
     this.signUp?.open();
+  }
+
+  logOut(){
+    this.authService.logOut().subscribe((res)=>{
+      this.authService.removeToken();
+    })
   }
   
 }

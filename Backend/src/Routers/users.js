@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const uuid=require('uuid');
 const jwt = require('jsonwebtoken');
 const bcrypt= require('bcryptjs');
+const auth = require('../Middleware/auth')
 
 const router=new express.Router()
 
@@ -43,6 +44,18 @@ router.post('/users/login',async (req,res)=>{
     catch(err){
         res.status(400).send(err);
     }  
+})
+
+router.delete('/users/logout',auth, async (req,res)=>{
+    try{
+        let authToken=null;
+        await pool.execute('UPDATE users SET Auth_token = ? WHERE user_id = ?', [authToken, req._id]);
+        res.status(200).send({msg:'Logged out succesfully'});
+    }
+    catch (err) {
+        console.log(err);
+        res.status(400).send({msg:'Failed to logut'});
+    }
 })
 
 async function getUserByCredentials(userId){
