@@ -9,7 +9,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 const routes: Routes = [
   { path: 'indices', component: IndicesComponent  },
   { path: '', component: HomePageComponent},
-  { path: 'stock-details', component:StockDetailsComponent},
+  { path: 'stock-details/:stockname', component:StockDetailsComponent},
   { path: 'compare', component: ComparisonComponent}
 ];
 

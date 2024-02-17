@@ -12,6 +12,7 @@ export class NavbarComponent implements OnInit {
   images = [1055, 194, 368].map((n) => `https://picsum.photos/id/${n}/900/500`);
   showNavigationArrows = false;
 	showNavigationIndicators = false;
+  showOptionsCard:boolean=false;
   constructor(private router: Router) { }
 
   ngOnInit(): void {
@@ -20,5 +21,7 @@ export class NavbarComponent implements OnInit {
   navigateToIndices(){
     this.router.navigate(['/indices']);
   }
+
+  handleOptionClick(val:string){}
 
 }

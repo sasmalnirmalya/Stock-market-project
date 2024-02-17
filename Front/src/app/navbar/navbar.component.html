@@ -10,10 +10,18 @@
                     <div class="dropdown">
                         <p>Products</p>
                         <div class="dropdown-content">
-                            <a href="javascript:void(0)" (click)="navigateToIndices()">Indices</a>
+                            <!-- <a href="javascript:void(0)" (click)="navigateToIndices()">Indices</a>
                             <a href="#">Technicals</a>
-                            <a href="#">News</a>
+                            <a href="#">News</a> -->
+                            <div id="options-card">
+                                <div class="option" (click)="navigateToIndices()">Indices</div>
+                                <div class="option" (click)="handleOptionClick('settings')">Technicals</div>
+                                <div class="option" (click)="handleOptionClick('settings')">News</div>
+                            </div>
                         </div>      
+                        <ng-container *ngIf="showOptionsCard">
+                            
+                        </ng-container>
                     </div>
                     <div class="products" id="Documentations">Documentations</div>
                     <div class="products">Pricing</div>

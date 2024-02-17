@@ -1,5 +1,21 @@
 <div class="card" style="width: 90%;margin: auto;margin-top: 20px;">
-    <h4>Stock Name</h4>
+    <div class="row">
+        <div class="col">
+            <div style="padding-left: 20px; padding-top: 10px;">
+                <h4 >{{stockDetailsData.name}}</h4>
+                <h6>{{stockDetailsData.symbol}}</h6>
+            </div>
+        </div>
+        <div class="col">
+            <div style="margin-left: auto; margin-right: auto;"> 
+                <h4>{{stockDetailsData.price}}</h4>
+                <h6>{{stockDetailsData.changesPercentage}}</h6>
+            </div>
+        </div>
+        <div class="col">
+            Volume
+        </div>
+    </div>
 </div>
 
 <div class="card" style="width: 90%;margin: auto; margin-top: 50px;padding-top: 10px;padding-bottom: 10px;">
@@ -9,25 +25,25 @@
                 <div class="row">
                     <div style="display: flex;justify-content: space-between;">
                         <span>Open </span>
-                        <span>3591.00</span>
+                        <span>{{stockDetailsData.open}}</span>
                     </div>
                 </div>
                 <div class="row">
                     <div style="display: flex;justify-content: space-between;">
                         <span>Previous Close </span>
-                        <span>3589.35</span>
+                        <span>{{stockDetailsData.previousClose}}</span>
                     </div>
                 </div>
                 <div class="row">
                     <div style="display: flex;justify-content: space-between;">
                         <span>Volume </span>
-                        <span>2075691</span>
+                        <span>{{stockDetailsData.volume}}</span>
                     </div>
                 </div>
                 <div class="row">
                     <div style="display: flex;justify-content: space-between;">
                         <span>Value </span>
-                        <span>75169.07</span>
+                        <span>{{stockDetailsData.previousClose}}</span>
                     </div>
                 </div>
             </div>
@@ -35,13 +51,13 @@
                 <div class="row">
                     <div style="display: flex;justify-content: space-between;">
                         <span>High </span>
-                        <span>3634.95</span>
+                        <span>{{stockDetailsData.dayHigh}}</span>
                     </div>
                 </div>
                 <div class="row">
                     <div style="display: flex;justify-content: space-between;">
                         <span>Low </span>
-                        <span>3575.05</span>
+                        <span>{{stockDetailsData.dayLow}}</span>
                     </div>
                 </div>
                 <div class="row">
@@ -61,13 +77,13 @@
                 <div class="row">
                     <div style="display: flex;justify-content: space-between;">
                         <span>TTM EPS </span>
-                        <span>119.55</span>
+                        <span>{{stockDetailsData.eps}}</span>
                     </div>
                 </div>
                 <div class="row">
                     <div style="display: flex;justify-content: space-between;">
                         <span>TTM PE </span>
-                        <span>30.29</span>
+                        <span>{{stockDetailsData.pe}}</span>
                     </div>
                 </div>
                 <div class="row">
@@ -113,11 +129,13 @@
     </div>
 </div>
 
-<!-- <mat-card>
-    <mat-card-header>
-        <mat-card-title>Shiba Inu</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-        <p>1234.21</p>
-      </mat-card-content>
-</mat-card> -->
+<div class="card" style="width: 90%;margin: auto; margin-top: 50px;padding-top: 10px;padding-bottom: 10px;">
+    <highcharts-chart 
+  [Highcharts]="Highcharts"
+  [options]="chartOptions"
+  [(update)]="updateFlag"
+  [callbackFunction]="chartCallback"
+  style="width: 100%; height: 400px; display: block;"
+></highcharts-chart>
+</div>
+

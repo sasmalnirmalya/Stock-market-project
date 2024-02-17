@@ -23,10 +23,12 @@ export class FundamentalChartsService {
     return this.http.get(_url)
   }
 
-  getNiftyFiftyData()
+  getIndexData(indexName : string, )
   {
-    let _url='http://localhost:3000/index/nifty-50';
-    return this.http.get(_url);
+    let _url='http://localhost:3000/indices';
+    let params = new HttpParams();
+    params = params.append('index',indexName);
+    return this.http.get(_url,{params: params});
   }
 
   getNiftyFifty()

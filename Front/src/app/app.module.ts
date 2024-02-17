@@ -32,8 +32,9 @@ import { SignupComponent } from './navbar/profile/signup/signup.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { AuthInterceptor } from './auth.interceptor';
 import { CopyUserIdModalComponent } from './Modals/copy-user-id-modal/copy-user-id-modal.component';
+import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 
-
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 @NgModule({
   declarations: [
@@ -55,7 +56,6 @@ import { CopyUserIdModalComponent } from './Modals/copy-user-id-modal/copy-user-
     LoginComponent,
     SignupComponent,
     CopyUserIdModalComponent,
-    
   ],
   imports: [
     BrowserModule,
@@ -69,7 +69,8 @@ import { CopyUserIdModalComponent } from './Modals/copy-user-id-modal/copy-user-
     HighchartsChartModule,
     FormsModule,
     ReactiveFormsModule,
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
+    SocketIoModule.forRoot(config)
   ],
   providers: [
     {

@@ -1,15 +1,21 @@
 
 <div class="card" style="width: 90%;margin: auto;margin-top: 20px;">
+    <div class="row">
         <div class="col-6">
-            <label>Select Index : </label>
-            <select>
-                <option value="index1"> Index 1</option>
-                <option value="index2"> Index 2</option>
-                <option value="index3"> Index 3</option>
-                <option value="index4"> Index 4</option>
+            <label>Select Type : </label>
+            <select [(ngModel)]="selectedIndexType" (change)="onTypeChange()">
+                <!-- <option [value]="indexType[0]['value']" > {{indexType[0]['displayName']}}</option> -->
+                <option *ngFor="let item of indexType" [value]="item.value"> {{item.displayName}}</option>
             </select>
         </div>
-            
+        <div class="col-6">
+            <label>Select Index : </label>
+            <select [(ngModel)]="selectedIndex" (change)="onIndexChange()">
+                <!-- <option [value]="selectedIndexTypeOptions[0].value"> {{selectedIndexTypeOptions[0].displayName}}</option> -->
+                <option *ngFor="let key of selectedIndexTypeOptions" [value]="key.value"> {{key.displayName}}</option>
+            </select>
+        </div>
+    </div>      
 </div>
 
 <div style="width: 90%;margin: auto;">
