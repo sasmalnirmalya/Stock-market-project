@@ -43,26 +43,26 @@ export class FundamentalChartsComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.FndmntlChrtSrvc.getBarGraphData().subscribe((res: any) => {
-			this.dataP = res.map((x: {
-				company: any; market_cap: any;
-			}) => {
-				return {
-					y: x.market_cap,
-					company: x.company
-				}
-			})
+		// this.FndmntlChrtSrvc.getBarGraphData().subscribe((res: any) => {
+		// 	this.dataP = res.map((x: {
+		// 		company: any; market_cap: any;
+		// 	}) => {
+		// 		return {
+		// 			y: x.market_cap,
+		// 			company: x.company
+		// 		}
+		// 	})
 
-			this.chartOptions.data[0].dataPoints=this.dataModifier(this.dataP);
-			this.chart.render()
+		// 	this.chartOptions.data[0].dataPoints=this.dataModifier(this.dataP);
+		// 	this.chart.render()
 
-		});
+		// });
 
-		this.FndmntlChrtSrvc.getAllStockInfo().subscribe((res:any)=>{
-			console.log(res)
-			//this.rowData=res;
-			console.log(this.rowData)
-		});
+		// this.FndmntlChrtSrvc.getAllStockInfo().subscribe((res:any)=>{
+		// 	console.log(res)
+		// 	//this.rowData=res;
+		// 	console.log(this.rowData)
+		// });
 
 		
 		

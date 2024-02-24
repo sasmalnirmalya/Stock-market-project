@@ -17,4 +17,8 @@ export class IndexSocketService {
   public getMessage(): Observable<string> {
     return this.socket.fromEvent('message')
   }
+
+  public disconnect(){
+    this.socket.disconnect();
+  } 
 }

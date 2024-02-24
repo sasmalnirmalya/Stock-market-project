@@ -18,12 +18,13 @@ router.post('/users/signup',async (req,res)=>{
         const newUuid = uuid.v4();
         password = await bcrypt.hash(req.body.password, 8);
         const authToken = jwt.sign(newUuid, secretKey);
-        const [user, row] = await pool.execute('INSERT INTO users (user_id, First_Name, Last_Name, password,Auth_token) VALUES (?, ?, ?, ?,?)',
+        const [user, row] = await pool.execute('INSERT INTO users (user_id, first_name, last_name, password,auth_token) VALUES (?, ?, ?, ?,?)',
             [newUuid, req.body.firstName, req.body.lastName, password, authToken]);
         console.log(user);
         return res.status(200).send({'Auth Token':authToken , fName: req.body.firstName, lName: req.body.lastName, user_id: newUuid});
     }
     catch (err){
+        console.log(err)
         res.status(400).send(err);
     }
     
@@ -50,7 +51,7 @@ router.post('/users/login',async (req,res)=>{
 router.delete('/users/logout',auth, async (req,res)=>{
     try{
         let authToken=null;
-        await pool.execute('UPDATE users SET Auth_token = ? WHERE user_id = ?', [authToken, req._id]);
+        await pool.execute('UPDATE users SET auth_token = ? WHERE user_id = ?', [authToken, req._id]);
         res.status(200).send({msg:'Logged out succesfully'});
     }
     catch (err) {
@@ -78,7 +79,7 @@ async function getUserByCredentials(userId){
 async function generateAuthToken(user){
     try {
         const token = jwt.sign(user.user_id, secretKey);
-        await pool.execute('UPDATE users SET Auth_token = ? WHERE user_id = ?', [token, user.user_id]);
+        await pool.execute('UPDATE users SET auth_token = ? WHERE user_id = ?', [token, user.user_id]);
         return token;
     } catch (error) {
         console.error(error);

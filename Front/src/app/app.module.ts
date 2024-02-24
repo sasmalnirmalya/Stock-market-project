@@ -14,7 +14,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material/material.module';
 import { FeaturesComponent } from './features/features.component';
-import { CandleStickComponent } from './features/candle-stick/candle-stick.component';
 import { FundamentalChartsComponent } from './features/fundamental-charts/fundamental-charts.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { IndicesComponent } from './features/indices/indices.component';
@@ -40,7 +39,6 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
   declarations: [
     AppComponent,
     FeaturesComponent,
-    CandleStickComponent,
     FundamentalChartsComponent,
     NavbarComponent,
     IndicesComponent,
