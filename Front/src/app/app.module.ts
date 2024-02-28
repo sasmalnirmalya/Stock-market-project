@@ -32,8 +32,10 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { AuthInterceptor } from './auth.interceptor';
 import { CopyUserIdModalComponent } from './Modals/copy-user-id-modal/copy-user-id-modal.component';
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
+import { environment } from 'src/environments/environment';
+import { AgGridIndexComponent } from './Tables/ag-grid-index/ag-grid-index.component';
 
-const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+const config: SocketIoConfig = { url: environment.baseUrl, options: {} };
 
 @NgModule({
   declarations: [
@@ -54,6 +56,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     LoginComponent,
     SignupComponent,
     CopyUserIdModalComponent,
+    AgGridIndexComponent,
   ],
   imports: [
     BrowserModule,

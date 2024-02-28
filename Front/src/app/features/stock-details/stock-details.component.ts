@@ -36,11 +36,6 @@ export class StockDetailsComponent implements OnInit {
       this.updateFlag=true;
     })
 
-    this.socketService.getMessage().subscribe((res)=>{
-      console.log('here',res);
-    })
-
-    this.socketService.sendMessage('hello');
   }
 
   Highcharts: typeof Highcharts = Highcharts;

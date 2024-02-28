@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -7,8 +8,9 @@ import { Injectable } from '@angular/core';
 export class ComparisonService {
 
   constructor(private http:HttpClient) { }
+  baseUrl = environment.baseUrl;
 
-  _comparisonUrl='http://localhost:3000/fundamental/compare';
+  _comparisonUrl=this.baseUrl+'/fundamental/compare';
   getCompareData(){
     return this.http.get(this._comparisonUrl);
   }

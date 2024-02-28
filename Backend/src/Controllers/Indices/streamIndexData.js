@@ -2,7 +2,6 @@ const indices = require('../../resources/stocklist')
 const axios = require('axios');
 
  exports.streamIndexData= async (socket) => {
-   console.log('A user connected');
    let indexName = 'NIFTY50';
 
    socket.on('message', async (data) => {
@@ -33,7 +32,6 @@ const axios = require('axios');
    }, 5000);
 
    socket.on('disconnect', () => {
-     console.log('A client disconnected');
      clearInterval(interval);
    });
 

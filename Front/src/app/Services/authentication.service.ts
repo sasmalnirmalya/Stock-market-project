@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 export class AuthenticationService implements OnInit {
 
   private dataSubject = new BehaviorSubject<boolean>(this.isTokenExists());
+  baseUrl = environment.baseUrl;
 
   // Expose the Subject as an Observable
   data$ = this.dataSubject.asObservable();
@@ -20,9 +22,9 @@ export class AuthenticationService implements OnInit {
   ngOnInit(): void {
     
   }
-  _loginUrl="http://localhost:3000/users/login";
-  _signUpUrl="http://localhost:3000/users/signup";
-  _logOutUrl="http://localhost:3000/users/logout";
+  _loginUrl= this.baseUrl+"/users/login";
+  _signUpUrl=this.baseUrl+"/users/signup";
+  _logOutUrl=this.baseUrl+"/users/logout";
 
   login(loginData: any){
     return this.http.post(this._loginUrl,loginData);

@@ -5,10 +5,10 @@ const cors = require('cors')
 const http = require('http');
 const socketIo = require('socket.io');
 
-const stock_fundamentalRouter=require('./Routers/stock-fundamental')
-const user_router=require('./Routers/users')
-const indices_router= require('./Routers/indices')
-const streamIndexData = require ('./Controllers/Indices/streamIndexData')
+const stock_fundamentalRouter=require('./src/Routers/stock-fundamental')
+const user_router=require('./src/Routers/users')
+const indices_router= require('./src/Routers/indices')
+const streamIndexData = require ('./src/Controllers/Indices/streamIndexData')
 
 
 const app = express()

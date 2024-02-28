@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +9,10 @@ export class StockDetailsService {
 
   constructor(private http: HttpClient) { }
 
-  _url_StockDetailsData='http://localhost:3000/fundamental/stockDetails';
-  _url_StockFinancialData='http://localhost:3000/fundamental/financials';
+  baseUrl = environment.baseUrl;
+
+  _url_StockDetailsData=this.baseUrl+'/fundamental/stockDetails';
+  _url_StockFinancialData=this.baseUrl+'/fundamental/financials';
 
   getStockDetailsData(stockName:string)
   {
