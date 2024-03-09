@@ -7,7 +7,7 @@ import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AgGridModule } from 'ag-grid-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -34,6 +34,14 @@ import { CopyUserIdModalComponent } from './Modals/copy-user-id-modal/copy-user-
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 import { environment } from 'src/environments/environment';
 import { AgGridIndexComponent } from './Tables/ag-grid-index/ag-grid-index.component';
+import { SearchComponent } from './navbar/search/search.component';
+import { ColumnChartComponent } from './HighCharts/column-chart/column-chart.component';
+import { TwoDecimalPipe } from './Pipes/two-decimal.pipe';
+import { TruncatePipe } from './Pipes/truncate.pipe';
+import { StockInfosComponent } from './features/stock-details/stock-infos/stock-infos.component';
+import { DisplayPriceCardDirective } from './Directives/display-price-card.directive';
+import { DisplayRatioCardDirective } from './Directives/display-ratio-card.directive';
+import { DisplayVolumeCardDirective } from './Directives/display-volume-card.directive';
 
 const config: SocketIoConfig = { url: environment.baseUrl, options: {} };
 
@@ -57,6 +65,14 @@ const config: SocketIoConfig = { url: environment.baseUrl, options: {} };
     SignupComponent,
     CopyUserIdModalComponent,
     AgGridIndexComponent,
+    SearchComponent,
+    ColumnChartComponent,
+    TwoDecimalPipe,
+    TruncatePipe,
+    StockInfosComponent,
+    DisplayPriceCardDirective,
+    DisplayRatioCardDirective,
+    DisplayVolumeCardDirective,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +87,8 @@ const config: SocketIoConfig = { url: environment.baseUrl, options: {} };
     FormsModule,
     ReactiveFormsModule,
     NgMultiSelectDropDownModule.forRoot(),
-    SocketIoModule.forRoot(config)
+    SocketIoModule.forRoot(config),
+    NgSelectModule
   ],
   providers: [
     {

@@ -1,0 +1,82 @@
+
+<div class="container" style="color: white;margin-top: 50px">
+    <div class="row">
+        <div class="col-md-3 col-sm-6">
+            <!-- Content for column 1 -->
+            <div class="info-card" appDisplayPriceCard>
+                <span>Open </span>
+                <span>{{stockDetailsData.open | twoDecimal}}</span>
+            </div>
+            <div class="info-card" appDisplayPriceCard>
+                <span>Previous Close </span>
+                <span>{{stockDetailsData.previousClose| twoDecimal }}</span>
+            </div>
+            <div class="info-card">
+                <span>Volume </span>
+                <span>{{stockDetailsData.volume}}</span>
+            </div>
+            <div class="info-card">
+                <span>Value </span>
+                <span>{{stockDetailsData.previousClose | twoDecimal}}</span>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <!-- Content for column 2 -->
+            <div class="info-card" appDisplayPriceCard>
+                <span>High </span>
+                <span>{{stockDetailsData.dayHigh | twoDecimal}}</span>
+            </div>
+            <div class="info-card" appDisplayPriceCard>
+                <span>Low </span>
+                <span>{{stockDetailsData.dayLow | twoDecimal}}</span>
+            </div>
+            <div class="info-card" appDisplayPriceCard>
+                <span>UC Limit </span>
+                <span>3948.25</span>
+            </div>
+            <div class="info-card" appDisplayPriceCard>
+                <span>LC Limit </span>
+                <span>3230.45</span>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <!-- Content for column 3 -->
+            <div class="info-card" appDisplayRatioCard>
+                <span>TTM EPS </span>
+                <span>{{stockDetailsData.eps | twoDecimal}}</span>
+            </div>
+            <div class="info-card" appDisplayRatioCard>
+                <span>TTM PE </span>
+                <span>{{stockDetailsData.pe | twoDecimal}}</span>
+            </div>
+            <div class="info-card" appDisplayRatioCard>
+                <span>P/B </span>
+                <span>14.75</span>
+            </div>
+            <div class="info-card">
+                <span>Face Value </span>
+                <span>1</span>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <!-- Content for column 4 -->
+            <div class="info-card" appDisplayPriceCard>
+                <span>Mkt Cap (Rs. Cr.) </span>
+                <span>1,325,088</span>
+            </div>
+            <div class="info-card">
+                <span>Dividend Yield </span>
+                <span>3.18</span>
+            </div>
+            <div class="info-card">
+                <span>20D Avg Volume </span>
+                <span>2,066,137</span>
+            </div>
+            <div class="info-card">
+                <span>Sector PE </span>
+                <span>245.54</span>
+            </div>
+        </div>
+    </div>
+</div>
+

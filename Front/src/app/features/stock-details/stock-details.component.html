@@ -2,140 +2,68 @@
     <div class="row">
         <div class="col">
             <div style="padding-left: 20px; padding-top: 10px;">
-                <h4 >{{stockDetailsData.name}}</h4>
+                <h4 >{{stockDetailsData.name | truncate:20}}</h4>
                 <h6>{{stockDetailsData.symbol}}</h6>
             </div>
         </div>
         <div class="col">
             <div style="margin-left: auto; margin-right: auto;"> 
-                <h4>{{stockDetailsData.price}}</h4>
-                <h6>{{stockDetailsData.changesPercentage}}</h6>
+                <span style="font-size: 24px; margin-right: 25px;">{{stockDetailsData.price | twoDecimal}}</span>
+                <span *ngIf="stockDetailsData.change>=0">
+                    <img src="../../../assets/arrowUp.png">
+                    <span style="color: green">{{stockDetailsData.change | twoDecimal}}</span>
+                    <span style="color: green;">({{stockDetailsData.changesPercentage | twoDecimal}})</span>
+                </span>
+                <span *ngIf="stockDetailsData.change<0">
+                    <img src="../../../assets/arrowDown.png">
+                    <span style="color: red">{{stockDetailsData.change | twoDecimal}}</span>
+                    <span style="color: red;">({{stockDetailsData.changesPercentage | twoDecimal}})</span>
+                </span>  
+            </div>
+            <div style="padding-left: 50px;">
+                <b>Vol</b> : {{stockDetailsData.volume}}
             </div>
         </div>
         <div class="col">
-            Volume
+            <mat-slider min="5" max="15" step="1" value="10">
+                <!-- <input matSliderThumb > -->
+            </mat-slider>
         </div>
     </div>
 </div>
 
-<div class="card" style="width: 90%;margin: auto; margin-top: 50px;padding-top: 10px;padding-bottom: 10px;">
-    <div class="container text-center">
-        <div class="row">
-            <div class="col">
-                <div class="row">
-                    <div style="display: flex;justify-content: space-between;">
-                        <span>Open </span>
-                        <span>{{stockDetailsData.open}}</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div style="display: flex;justify-content: space-between;">
-                        <span>Previous Close </span>
-                        <span>{{stockDetailsData.previousClose}}</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div style="display: flex;justify-content: space-between;">
-                        <span>Volume </span>
-                        <span>{{stockDetailsData.volume}}</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div style="display: flex;justify-content: space-between;">
-                        <span>Value </span>
-                        <span>{{stockDetailsData.previousClose}}</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="row">
-                    <div style="display: flex;justify-content: space-between;">
-                        <span>High </span>
-                        <span>{{stockDetailsData.dayHigh}}</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div style="display: flex;justify-content: space-between;">
-                        <span>Low </span>
-                        <span>{{stockDetailsData.dayLow}}</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div style="display: flex;justify-content: space-between;">
-                        <span>UC Limit </span>
-                        <span>3948.25</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div style="display: flex;justify-content: space-between;">
-                        <span>LC Limit </span>
-                        <span>3230.45</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="row">
-                    <div style="display: flex;justify-content: space-between;">
-                        <span>TTM EPS </span>
-                        <span>{{stockDetailsData.eps}}</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div style="display: flex;justify-content: space-between;">
-                        <span>TTM PE </span>
-                        <span>{{stockDetailsData.pe}}</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div style="display: flex;justify-content: space-between;">
-                        <span>P/B </span>
-                        <span>14.75</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div style="display: flex;justify-content: space-between;">
-                        <span>Face Value </span>
-                        <span>1</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="row">
-                    <div style="display: flex;justify-content: space-between;">
-                        <span>Mkt Cap (Rs. Cr.) </span>
-                        <span>1,325,088</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div style="display: flex;justify-content: space-between;">
-                        <span>Dividend Yield </span>
-                        <span>3.18</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div style="display: flex;justify-content: space-between;">
-                        <span>20D Avg Volume </span>
-                        <span>2,066,137</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div style="display: flex;justify-content: space-between;">
-                        <span>Sector PE </span>
-                        <span>245.54</span>
-                    </div>
-                </div>
+<app-stock-infos [stockDetailsData]="stockDetailsData"></app-stock-infos>
+
+<div class="fin-card">
+    <h3 class="text-center">Financials </h3>
+    <div class="item1">
+        <input type="radio" class="btn-check" name="options" id="annual" autocomplete="off" checked (change)="changePeriod('annual')">
+        <label class="btn btn-secondary" for="annual">Annually</label>
+        
+        <input type="radio" class="btn-check" name="options" id="quarter" autocomplete="off" (change)="changePeriod('quarter')">
+        <label class="btn btn-secondary" for="quarter">Quarterly</label>
+    </div>
+    <div class="item2">
+        <div class="d-flex mb-2">
+            <div class="flex-fill">
+                <input type="radio" class="btn-check" name="financialTerms" id="revenue" autocomplete="off" checked (change)="changeParams('revenue')">
+                <label class="btn btn-secondary w-100" for="revenue">Revenue</label>
             </div>
         </div>
+        <div class="d-flex mb-2">
+            <div class="flex-fill">
+                <input type="radio" class="btn-check" name="financialTerms" id="grossProfit" autocomplete="off" (change)="changeParams('grossProfit')">
+                <label class="btn btn-secondary w-100" for="grossProfit">Profit</label>
+            </div>
+        </div>
+        <div class="d-flex">
+            <div class="flex-fill">
+                <input type="radio" class="btn-check" name="financialTerms" id="eps" autocomplete="off" (change)="changeParams('eps')">
+                <label class="btn btn-secondary w-100" for="eps">EPS</label>
+            </div>
+        </div>       
     </div>
-</div>
 
-<div class="card" style="width: 90%;margin: auto; margin-top: 50px;padding-top: 10px;padding-bottom: 10px;">
-    <highcharts-chart 
-  [Highcharts]="Highcharts"
-  [options]="chartOptions"
-  [(update)]="updateFlag"
-  [callbackFunction]="chartCallback"
-  style="width: 100%; height: 400px; display: block;"
-></highcharts-chart>
+    <div class="item3"><app-column-chart [chartProp]="chartProp"></app-column-chart></div>
 </div>
 

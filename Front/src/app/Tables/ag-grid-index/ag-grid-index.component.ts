@@ -145,7 +145,6 @@ export class AgGridIndexComponent implements OnInit, OnChanges {
         name: 'Show stock details',
         action: () => {
           this.router.navigate(['/stock-details/' + params.value]);
-          console.log(params)
         }
       }
     ];

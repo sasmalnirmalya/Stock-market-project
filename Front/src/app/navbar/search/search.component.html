@@ -1,0 +1,7 @@
+<div>
+    <ng-select [(ngModel)]="selectedCar" (change)="onChange()" >
+        <ng-option *ngFor="let stock of stockList" [value]="stock.symbol" style="background-color: aliceblue;">{{stock.name}}</ng-option>
+    </ng-select>
+</div>
+
+<!-- [placeholder]="placeHolder" -->

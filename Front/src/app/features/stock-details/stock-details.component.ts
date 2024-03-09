@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StockDetailsService } from './stock-details.service';
 import { ActivatedRoute } from '@angular/router';
-import * as Highcharts from 'highcharts';
-import { IndexSocketService } from 'src/app/Services/index-socket.service';
 
 @Component({
   selector: 'app-stock-details',
@@ -13,47 +11,59 @@ export class StockDetailsComponent implements OnInit {
 
   stockDetailsData:any;
   updateFlag: boolean=false;
-  chartRef: Highcharts.Chart | undefined;
+  chartProp: any;
+  stockName:string = '';
+  period:string = 'annual';
+  params: string = 'revenue';
 
-  constructor(private service: StockDetailsService, private route: ActivatedRoute, private socketService: IndexSocketService) { }
+  constructor(private service: StockDetailsService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    let stockName= this.route.snapshot.params['stockname']
+    //let stockName= this.route.snapshot.params['stockname'];
 
+    this.route.params.subscribe((params)=>{
+      this.stockName=params['stockname'];
+      this.setStockDetails(params['stockname']);
+      this.setStockFinancialData(params['stockname'],this.period,this.params);
+    })  
+  }
+
+
+  setStockDetails(stockName:string){
     this.service.getStockDetailsData(stockName).subscribe((res:any)=>{
       this.stockDetailsData=res[0];
     })
+  }
 
-    this.service.getStockFinancialData(stockName,'').subscribe((res:any)=>{
-      let data = res.map((item: any) => {
-        return item.revenue;
+  setStockFinancialData(stockName:string, period: string, params: string){
+    this.service.getStockFinancialData(stockName,period).subscribe((res:any)=>{
+      let data = res.fData.map((item: any) => {
+        return item[params];
       });
-      let xAxis = res.map((item: any) => {
-        return item.period + item.calendarYear;
+      let xAxis = res.fData.map((item: any) => {
+        return item.period +' '+item.calendarYear;
       });
-      this.chartRef?.addSeries({type: 'column', name : stockName , data : data});
-      this.chartOptions.xAxis = { categories : xAxis};
-      this.updateFlag=true;
+      
+      this.chartProp={
+        data: data,
+        xAxis: xAxis,
+        stockName: stockName
+      }
     })
 
   }
 
-  Highcharts: typeof Highcharts = Highcharts;
-  chartOptions: Highcharts.Options
-   = {
-    series: [],
-    title: {
-          text: 'Intersetor Comparison'
-    },
-    // xAxis: {
-    //       categories: []
-    //   },
+  changePeriod(event: any){
+    this.period=event;
+    this.setStockFinancialData(this.stockName, event, this.params);
+  }
 
-}
+  changeParams(params: string){
+    this.params=params;
+    this.setStockFinancialData(this.stockName, this.period, this.params);
+  }
 
-chartCallback: Highcharts.ChartCallbackFunction = (chart: any) => {
-  this.chartRef = chart;
-};
+  
 
 
 

@@ -5,6 +5,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatSliderModule} from '@angular/material/slider';
 
 @NgModule({
   declarations: [],
@@ -14,6 +16,8 @@ import {MatTableModule} from '@angular/material/table';
     MatButtonModule, 
     MatIconModule,
     MatTableModule,
+    MatButtonToggleModule,
+    MatSliderModule
   ],
   exports:[
     CommonModule,
@@ -21,7 +25,9 @@ import {MatTableModule} from '@angular/material/table';
     MatButtonModule, 
     MatIconModule,
     MatCardModule,
-    MatTableModule
+    MatTableModule,
+    MatButtonToggleModule,
+    MatSliderModule
   ]
 })
 export class MaterialModule { }
