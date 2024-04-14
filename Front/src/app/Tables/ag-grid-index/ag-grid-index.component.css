@@ -1,0 +1,4 @@
+.ag-grid-container .ag-root-wrapper {
+    border-radius: 10px; /* Adjust the value as needed */
+    overflow: hidden; /* Ensure content is clipped to the border radius */
+}

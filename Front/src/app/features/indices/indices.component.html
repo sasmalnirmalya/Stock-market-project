@@ -1,14 +1,14 @@
 
-<div class="card" style="width: 90%;margin: auto;margin-top: 20px;">
-    <div class="row">
-        <div class="col-6">
+<div class="card" style="width: 90%;margin: auto;margin-top: 20px; margin-bottom: 20px; padding-top: 5px;padding-bottom: 5px;">
+    <div class="row" style="justify-content: space-around;">
+        <div class="col-lg-6 col-sm-12">
             <label>Select Type : </label>
             <select [(ngModel)]="selectedIndexType" (change)="onTypeChange()">
                 <!-- <option [value]="indexType[0]['value']" > {{indexType[0]['displayName']}}</option> -->
                 <option *ngFor="let item of indexType" [value]="item.value"> {{item.displayName}}</option>
             </select>
         </div>
-        <div class="col-6">
+        <div class="col-lg-6 col-sm-12"> 
             <label>Select Index : </label>
             <select [(ngModel)]="selectedIndex" (change)="onIndexChange()">
                 <!-- <option [value]="selectedIndexTypeOptions[0].value"> {{selectedIndexTypeOptions[0].displayName}}</option> -->
@@ -18,7 +18,7 @@
     </div>      
 </div>
 
-<app-ag-grid-index 
+<app-ag-grid-index
     [data]="rowData"
 >
 </app-ag-grid-index>

@@ -18,31 +18,29 @@ export class ColumnChartComponent implements OnInit, OnChanges, OnDestroy {
     = {
       series: [],
       title: {
-        text: 'Intersetor Comparison'
+        text: 'Revenue'
       },
 
     }
   constructor() { 
   }
   ngOnDestroy(): void {
-    console.log('destroyed');
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    // this.chartRef?.addSeries({ type: 'column', name: this.chartProp.stockName, data: this.chartProp.data.reverse() });
     if( changes['chartProp'] && changes['chartProp'].currentValue){
       this.chartOptions.series= [{
         type: 'column',
         data: this.chartProp.data.reverse(),
       }];
       this.chartOptions.xAxis = { categories: this.chartProp.xAxis.reverse() };
+      this.chartOptions.title= {text: this.chartProp.parameter}
       this.updateFlag = true;
       this.isHighcharts=true;
     }  
   }
 
   ngOnInit(): void {
-    console.log('initiated');
   }
 
   

@@ -1,0 +1,25 @@
+.blur {
+    position: absolute;
+    top: 100;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    /* Adjust the opacity to control the blur effect */
+    backdrop-filter: blur(10px);
+    /* Adjust the blur radius as needed */
+    z-index: 1;
+}
+
+.text {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    font-size: 100px;
+    /* Adjust the font size as needed */
+    color: #333;
+    /* Adjust the text color as needed */
+    margin-top: 50vh;
+    /* Adjust the vertical position of the text */
+    transform: translateY(-50%);
+}

@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { IndexSocketService } from 'src/app/Services/index-socket.service';
 
 @Component({
@@ -9,6 +10,7 @@ import { IndexSocketService } from 'src/app/Services/index-socket.service';
 export class IndicesComponent implements OnInit, OnDestroy, AfterViewInit {
 
 	rowData: any[]=[];
+	indexSubscription:Subscription | undefined;
 	selectedIndexType: string = 'BMI';
 	selectedIndex: string = 'NIFTY50';
 	indexType: any[] = [{ displayName: 'BROAD MARKET INDICES', value: 'BMI' }, { displayName: 'SECTORAL INDICES', value: 'SEC' }];
@@ -34,13 +36,14 @@ export class IndicesComponent implements OnInit, OnDestroy, AfterViewInit {
 	ngAfterViewInit(): void {
 		this.socketService.sendMessage(this.selectedIndex);
 
-		this.socketService.getMessage().subscribe((res: any) => {
-			this.rowData=res.data
+		this.indexSubscription=this.socketService.getMessage().subscribe((res: any) => {
+			this.rowData=res.data;
 		})
 	}
 
 	ngOnDestroy(): void {
-		this.socketService.disconnect();
+		//this.socketService.disconnect();
+		this.indexSubscription?.unsubscribe();
 	}
 
 	ngOnInit(): void {

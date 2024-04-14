@@ -20,7 +20,7 @@
 }
 
 .dropdown-content {
-    display: none;
+    display: block;
     position: absolute;
     background-color: transparent;
     min-width: 160px;
@@ -64,3 +64,75 @@
     background-color: #dbf3fa;
     color: #333;
   }
+
+  .topbar{
+    width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    color: aliceblue;
+  }
+
+
+  .menu-button{
+    display: none;
+  }
+
+  nav li:nth-child(7) {
+    margin-right: 50px;
+  }
+
+  nav li:nth-child(6) {
+    width: 240px;
+  }
+
+  .sidebar{
+    position: fixed;
+    top: 0; 
+    left: 0;
+    height: 100vh;
+    width: 25%;
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
+    color: aliceblue;
+    list-style: none;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .sidebar li{
+    width: 100%;
+  }
+
+  .productSubMenu{
+    display: none;
+    list-style: none;
+  }
+
+  @media(max-width: 800px){
+    .hideOnMobile{
+      display: none;
+    }
+    .menu-button{
+      display: block;
+    }
+
+  }
+
+  /* @media(max-width: 800px){
+    .sidebar{
+      width: 25%;
+      
+    }
+  } */
+
+  @media(min-width: 801px){
+    .sidebar{
+      display: none;
+    }
+  }
+  

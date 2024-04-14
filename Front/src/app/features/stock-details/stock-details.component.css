@@ -57,3 +57,73 @@ img {
     margin-right: 5px;
 }
   
+.bob-container {
+
+position: relative;
+width: 100%;
+margin-top: 5%;
+}
+
+.bob {
+position: absolute;
+display: inline;
+width: 10px;
+height: 10px;
+background-color: grey;
+border-radius: 50%;
+/* top: -10px;  */
+/* Distance above the line */
+/* left: calc(50% - 10px); */
+ /* Center the bob horizontally */
+}
+
+.line {
+width: 95%;
+border: none;
+border: 1px solid black;
+display: inline-block;
+}
+
+.bar {
+  position: absolute;
+  width: 2px;
+  /* Width of the vertical bar */
+  height: 10px;
+  /* Height of the vertical bar */
+  background-color: black;
+}
+
+.number {
+  position: absolute;
+  top: -20px;
+  /* Distance above the horizontal bar */
+  font-size: 12px;
+  color: black;
+  text-align: center;
+}
+
+.numb {
+  position: absolute;
+  bottom: -20px;
+  /* Distance above the horizontal bar */
+  font-size: 12px;
+  color: black;
+  text-align: center;
+}
+
+.number.left {
+  left: 0;
+}
+
+.number.right {
+  right: 5%;
+}
+
+.numb.left {
+  left: 0;
+}
+
+.numb.right {
+  right: 5%;
+}
+  

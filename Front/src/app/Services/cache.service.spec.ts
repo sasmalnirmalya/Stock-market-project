@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ComparisonService } from './comparison.service';
+import { CacheService } from './cache.service';
 
-describe('ComparisonService', () => {
-  let service: ComparisonService;
+describe('CacheService', () => {
+  let service: CacheService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ComparisonService);
+    service = TestBed.inject(CacheService);
   });
 
   it('should be created', () => {

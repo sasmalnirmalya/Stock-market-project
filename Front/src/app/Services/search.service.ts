@@ -15,7 +15,6 @@ export class SearchService {
     return this.http.get(this.url)
     .pipe(
       map((items:any) => {
-        //console.log(items)
         return items.filter((item: { exchangeShortName: string; }) => item.exchangeShortName === 'NSE')}));
   }
 }

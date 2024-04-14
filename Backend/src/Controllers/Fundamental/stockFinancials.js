@@ -29,7 +29,7 @@ exports.getStockFinancials = async (req, res) => {
     return res.status(200).send({ fData: financialData });
   }
   catch (err) {
-    return res.status(400).send(err);
+    return res.status(400).send({err:err});
   }
     
 };

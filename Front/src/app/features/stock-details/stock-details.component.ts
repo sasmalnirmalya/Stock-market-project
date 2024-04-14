@@ -38,8 +38,9 @@ export class StockDetailsComponent implements OnInit {
   setStockFinancialData(stockName:string, period: string, params: string){
     this.service.getStockFinancialData(stockName,period).subscribe((res:any)=>{
       let data = res.fData.map((item: any) => {
-        return item[params];
+        return item[params]>10000000?item[params]/10000000: item[params];
       });
+      
       let xAxis = res.fData.map((item: any) => {
         return item.period +' '+item.calendarYear;
       });
@@ -47,7 +48,8 @@ export class StockDetailsComponent implements OnInit {
       this.chartProp={
         data: data,
         xAxis: xAxis,
-        stockName: stockName
+        stockName: stockName,
+        parameter: this.params
       }
     })
 
@@ -63,6 +65,11 @@ export class StockDetailsComponent implements OnInit {
     this.setStockFinancialData(this.stockName, this.period, this.params);
   }
 
+  getBobPosition(): string {
+    const totalWidth = this.stockDetailsData.yearHigh - this.stockDetailsData.yearLow;
+    const bobPosition = ((this.stockDetailsData.price - this.stockDetailsData.yearLow) / totalWidth) * 100;
+    return `${bobPosition}%`;
+  }
   
 
 

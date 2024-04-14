@@ -1,5 +1,4 @@
-<div style="width: 90%;margin: auto;">
-    <mat-card>
+<div style="width: 90%;margin: auto;" class="ag-grid-container">
         <ag-grid-angular style="width: 100%; height: 400px;" class="ag-theme-balham-dark" 
         [rowData]="rowData"
         [columnDefs]="columnDefs"
@@ -8,7 +7,8 @@
         [enableRangeSelection]="true"
         [pinnedTopRowData]="pinnedTopRowData"
         (gridReady)="onGridReady($event)"
+        [sideBar]="sideBar"
+        [context]="context"
         >
-        </ag-grid-angular>
-    </mat-card>
+</ag-grid-angular>
 </div>

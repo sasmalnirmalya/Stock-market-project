@@ -13,8 +13,6 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material/material.module';
-import { FeaturesComponent } from './features/features.component';
-import { FundamentalChartsComponent } from './features/fundamental-charts/fundamental-charts.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { IndicesComponent } from './features/indices/indices.component';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -24,12 +22,11 @@ import { TopPerformersComponent } from './home-page/top-performers/top-performer
 import { HomeIndicesComponent } from './home-page/home-indices/home-indices.component';
 import { ChangeCellStyleDirective } from './Directives/change-cell-style.directive';
 import { StockDetailsComponent } from './features/stock-details/stock-details.component';
-import { ComparisonComponent } from './features/comparison/comparison.component';
 import { ClickOutsideDirective } from './Directives/click-outside.directive';
 import { LoginComponent } from './navbar/profile/login/login.component';
 import { SignupComponent } from './navbar/profile/signup/signup.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-import { AuthInterceptor } from './auth.interceptor';
+import { AuthInterceptor } from './Interceptors/auth.interceptor';
 import { CopyUserIdModalComponent } from './Modals/copy-user-id-modal/copy-user-id-modal.component';
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 import { environment } from 'src/environments/environment';
@@ -42,14 +39,18 @@ import { StockInfosComponent } from './features/stock-details/stock-infos/stock-
 import { DisplayPriceCardDirective } from './Directives/display-price-card.directive';
 import { DisplayRatioCardDirective } from './Directives/display-ratio-card.directive';
 import { DisplayVolumeCardDirective } from './Directives/display-volume-card.directive';
+import { NewsComponent } from './features/news/news.component';
+import { TechnicalsComponent } from './features/technicals/technicals.component';
+import { DocumentationsComponent } from './features/documentations/documentations.component';
+import { PricingComponent } from './features/pricing/pricing.component';
+import { CacheInterceptor } from './Interceptors/cache.interceptor';
+import { DetailsLinkComponent } from './CellRenderers/details-link/details-link.component';
 
 const config: SocketIoConfig = { url: environment.baseUrl, options: {} };
 
 @NgModule({
   declarations: [
     AppComponent,
-    FeaturesComponent,
-    FundamentalChartsComponent,
     NavbarComponent,
     IndicesComponent,
     HomePageComponent,
@@ -59,7 +60,6 @@ const config: SocketIoConfig = { url: environment.baseUrl, options: {} };
     HomeIndicesComponent,
     ChangeCellStyleDirective,
     StockDetailsComponent,
-    ComparisonComponent,
     ClickOutsideDirective,
     LoginComponent,
     SignupComponent,
@@ -73,6 +73,11 @@ const config: SocketIoConfig = { url: environment.baseUrl, options: {} };
     DisplayPriceCardDirective,
     DisplayRatioCardDirective,
     DisplayVolumeCardDirective,
+    NewsComponent,
+    TechnicalsComponent,
+    DocumentationsComponent,
+    PricingComponent,
+    DetailsLinkComponent,
   ],
   imports: [
     BrowserModule,
@@ -96,6 +101,11 @@ const config: SocketIoConfig = { url: environment.baseUrl, options: {} };
       useClass: AuthInterceptor,
       multi: true
     },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CacheInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent],
 })
