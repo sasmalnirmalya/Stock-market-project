@@ -1,54 +1,70 @@
-<div class="" >
+<nav class="navbar" style="background-color: transparent ;">
     <div>
-        <nav class="" style="background-color: transparent ;">
-            <ul class="sidebar">
-                <li>
-                    <a href="javascript:void(0)" (click)="closeDiseBar()">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960"
-                                width="26">
-                                <path
-                                    d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z" />
-                        </svg>
-                    </a>
-                </li>
-                
-                <li>Products
-                    <a *ngIf="!showSidebarProductOptions" (click)="hideShowPdtOption()"><svg enable-background="new 0 0 32 32" height="20px" id="Layer_1" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M14.77,23.795L5.185,14.21c-0.879-0.879-0.879-2.317,0-3.195l0.8-0.801c0.877-0.878,2.316-0.878,3.194,0  l7.315,7.315l7.316-7.315c0.878-0.878,2.317-0.878,3.194,0l0.8,0.801c0.879,0.878,0.879,2.316,0,3.195l-9.587,9.585  c-0.471,0.472-1.104,0.682-1.723,0.647C15.875,24.477,15.243,24.267,14.77,23.795z" fill="aliceblue"/></svg></a>
-                    <a *ngIf="showSidebarProductOptions"  (click)="hideShowPdtOption()"><svg enable-background="new 0 0 32 32" height="20px" id="Layer_1" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M18.221,7.206l9.585,9.585c0.879,0.879,0.879,2.317,0,3.195l-0.8,0.801c-0.877,0.878-2.316,0.878-3.194,0  l-7.315-7.315l-7.315,7.315c-0.878,0.878-2.317,0.878-3.194,0l-0.8-0.801c-0.879-0.878-0.879-2.316,0-3.195l9.587-9.585  c0.471-0.472,1.103-0.682,1.723-0.647C17.115,6.524,17.748,6.734,18.221,7.206z" fill="aliceblue"/></svg></a>
-                    <ul class="productSubMenu">
-                        <li><a (click)="navigateToIndices()">Indices</a></li>
-                        <li><a (click)="navigateTo('technicals')">Technicals</a></li>
-                        <li><a (click)="navigateTo('news')">News</a></li>
-                    </ul>
-                </li>
-                <li ><a (click)="navigateTo('documentation')">Documentation</a></li>
-                <li ><a (click)="navigateTo('pricing')">Pricing</a></li>
-            </ul>
-            
-            <ul class="topbar">
-                <li class="menu-button"><a (click)="openSideBar()"><img src="../../assets/hamburgermenu.png" alt="" style="height: 25px;width: 25px"></a>
-                </li>
-                <li><a (click)="redirectHome()">
-                        <h2 style="color: aliceblue;">KuberaKarna</h2>
-                    </a></li>
-                <li class="hideOnMobile" (clickedOutside)="handleClick($event)" appClickOutside>Products
-                    <ng-container>
-                        <div class="dropdown-content" *ngIf="showOptionsCard">
-                            <div id="options-card">
-                                <div class="option" (click)="navigateToIndices()">Indices</div>
-                                <div class="option" (click)="navigateTo('technicals')">Technicals</div>
-                                <div class="option" (click)="navigateTo('news')">News</div>
-                            </div>
-                        </div>
-                    </ng-container>
-                </li>
-                <li class="hideOnMobile"><a (click)="navigateTo('documentation')">Documentation</a></li>
-                <li class="hideOnMobile"><a (click)="navigateTo('pricing')">Pricing</a></li>
-                <li><app-search></app-search></li>
-                <li><app-profile></app-profile></li>
-            </ul>
-        </nav>
+        <a (click)="redirectHome()">
+            <h2 style="color: aliceblue;">Bisharad</h2>
+        </a>
     </div>
-</div>
+    <div class="menus">
+        <div class="products">
+            <div>Products</div>
+            <div class="product-options">
+                <div class="product-option" (click)="navigateToIndices()">Indices</div>
+                <div class="product-option" (click)="navigateTo('technicals')">Technicals</div>
+                <div class="product-option" (click)="navigateTo('news')">News</div>
+            </div>
+        </div>
+        <div><a (click)="navigateTo('documentation')">Documentation</a></div>
+        <div><a (click)="navigateTo('pricing')">Pricing</a></div>
+    </div>
+    <div class="search-bar"><app-search></app-search></div>
+    <div><a href="https://github.com/sasmalnirmalya/Stock-market-project/tree/master"><img src="../../assets/GitHub.png"  alt="GitHub Icon" style="height: 30px;width: 30px;"></a></div>
+    <ul class="sidebar">
+        <li>
+            <a href="javascript:void(0)" (click)="closeDiseBar()">
+                <svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960"
+                        width="26">
+                        <path
+                            d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z" />
+                </svg>
+            </a>
+        </li>
+        
+        <li>Products
+            <a *ngIf="!showSidebarProductOptions" (click)="hideShowPdtOption()"><svg enable-background="new 0 0 32 32" height="20px" id="Layer_1" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M14.77,23.795L5.185,14.21c-0.879-0.879-0.879-2.317,0-3.195l0.8-0.801c0.877-0.878,2.316-0.878,3.194,0  l7.315,7.315l7.316-7.315c0.878-0.878,2.317-0.878,3.194,0l0.8,0.801c0.879,0.878,0.879,2.316,0,3.195l-9.587,9.585  c-0.471,0.472-1.104,0.682-1.723,0.647C15.875,24.477,15.243,24.267,14.77,23.795z" fill="aliceblue"/></svg></a>
+            <a *ngIf="showSidebarProductOptions"  (click)="hideShowPdtOption()"><svg enable-background="new 0 0 32 32" height="20px" id="Layer_1" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M18.221,7.206l9.585,9.585c0.879,0.879,0.879,2.317,0,3.195l-0.8,0.801c-0.877,0.878-2.316,0.878-3.194,0  l-7.315-7.315l-7.315,7.315c-0.878,0.878-2.317,0.878-3.194,0l-0.8-0.801c-0.879-0.878-0.879-2.316,0-3.195l9.587-9.585  c0.471-0.472,1.103-0.682,1.723-0.647C17.115,6.524,17.748,6.734,18.221,7.206z" fill="aliceblue"/></svg></a>
+            <ul class="productSubMenu">
+                <li><a (click)="navigateToIndices()">Indices</a></li>
+                <li><a (click)="navigateTo('technicals')">Technicals</a></li>
+                <li><a (click)="navigateTo('news')">News</a></li>
+            </ul>
+        </li>
+        <li ><a (click)="navigateTo('documentation')">Documentation</a></li>
+        <li ><a (click)="navigateTo('pricing')">Pricing</a></li>
+    </ul>
+    
+    <!-- <ul class="topbar">
+        <li class="menu-button"><a (click)="openSideBar()"><img src="../../assets/hamburgermenu.png" alt="" style="height: 25px;width: 25px"></a>
+        </li>
+        <li><a (click)="redirectHome()">
+                <h2 style="color: aliceblue;">Bisharad</h2>
+            </a></li>
+        <li class="hideOnMobile" (clickedOutside)="handleClick($event)" appClickOutside>Products
+            <ng-container>
+                <div class="dropdown-content" *ngIf="showOptionsCard">
+                    <div id="options-card">
+                        <div class="option" (click)="navigateToIndices()">Indices</div>
+                        <div class="option" (click)="navigateTo('technicals')">Technicals</div>
+                        <div class="option" (click)="navigateTo('news')">News</div>
+                    </div>
+                </div>
+            </ng-container>
+        </li>
+        <li class="hideOnMobile"><a (click)="navigateTo('documentation')">Documentation</a></li>
+        <li class="hideOnMobile"><a (click)="navigateTo('pricing')">Pricing</a></li>
+        <li><app-search></app-search></li>
+        <li><app-profile></app-profile></li>
+    </ul> -->
+</nav>
+    
 
 

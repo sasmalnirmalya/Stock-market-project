@@ -13,9 +13,9 @@
 			<td style="background-color: beige;">
 				{{ item.index }}
 			</td>
-			<td style="background-color: beige;">{{ item.price | number }}</td>
-			<td [ngClass]="{'positive':item.PrcntChng>0, 'negative':item.PrcntChng<=0}">{{ item.change | number }}</td>
-			<td [ngClass]="{'positive':item.PrcntChng>0, 'negative':item.PrcntChng<=0}">{{item.PrcntChng}}%</td>
+			<td style="background-color: beige;">{{ item.last | number }}</td>
+			<td [ngClass]="{'positive':item.percentChange>0, 'negative':item.percentChange<=0}">{{ (item.last-item.previousClose) | number }}</td>
+			<td [ngClass]="{'positive':item.percentChange>0, 'negative':item.percentChange<=0}">{{item.percentChange}}%</td>
 		</tr>
 	</tbody>
 </table>

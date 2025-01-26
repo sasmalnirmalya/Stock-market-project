@@ -1,7 +1,13 @@
-<div>
-    <ng-select [(ngModel)]="selectedCar" (change)="onChange()" >
-        <ng-option *ngFor="let stock of stockList" [value]="stock.symbol" style="background-color: aliceblue;">{{stock.name}}</ng-option>
-    </ng-select>
+<div class="search-bar-container" appClickOutside (clickedOutside)="onClickOutside($event)">
+    <input class="search-bar" type="text" placeholder="Search" [(ngModel)]="searchText" 
+    (input)="onSearchTextChange()" 
+    (focus)="isSearchFocused = true"
+    >
+    <div class="search-option-block" *ngIf="isSearchFocused">
+        <div *ngIf="options.length==0">No search result</div>
+        <ul class="options" *ngIf="options.length>0">
+            <li  class="option" *ngFor="let item of options"  (click)="onChange(item.symbol,item.name)">{{item.name}}</li>
+        </ul>
+    </div>
 </div>
 
-<!-- [placeholder]="placeHolder" -->

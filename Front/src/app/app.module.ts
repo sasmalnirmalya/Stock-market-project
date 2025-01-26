@@ -45,6 +45,7 @@ import { DocumentationsComponent } from './features/documentations/documentation
 import { PricingComponent } from './features/pricing/pricing.component';
 import { CacheInterceptor } from './Interceptors/cache.interceptor';
 import { DetailsLinkComponent } from './CellRenderers/details-link/details-link.component';
+import { LineChartComponent } from './HighCharts/line-chart/line-chart.component';
 
 const config: SocketIoConfig = { url: environment.baseUrl, options: {} };
 
@@ -78,6 +79,7 @@ const config: SocketIoConfig = { url: environment.baseUrl, options: {} };
     DocumentationsComponent,
     PricingComponent,
     DetailsLinkComponent,
+    LineChartComponent,
   ],
   imports: [
     BrowserModule,

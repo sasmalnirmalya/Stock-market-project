@@ -1,21 +1,27 @@
-const axios = require('axios');
-const indices = require('../../resources/stocklist')
+const { client, headers } = require('../../Cookie/cookie');
+
+const nseUrlIndices = 'https://www.nseindia.com/api/allIndices';
+
+const getIndexData = async (req,res) => {
+  try {
+    // Fetch data
+    const response = await client.get(nseUrlIndices, { headers });
+    const indices = response.data.data.filter((item)=>{
+        return item.indexSymbol=="NIFTY 50" || item.indexSymbol=="NIFTY BANK"
+        || item.indexSymbol=="NIFTY AUTO" || item.indexSymbol=="NIFTY IT"
+        || item.indexSymbol=="NIFTY PHARMA" || item.indexSymbol=="NIFTY MIDCAP 50"
+
+    })
+    return   res.status(200).send({ data: indices });  
+  } catch (error) {
+    console.error('Error fetching data:', error.message);
+  }
+};
 
 
-exports.getIndexData = async (req, res) => {
-    try {
-        let index = indices[req.query['index']];
-        let query = '';
-        index.forEach((item) => {
-            query = query + item + ".NS,";
-        });
-        let url = 'https://fmpcloud.io/api/v3/quote/' + query + '?apikey=75d50292cad61f6ffdb1b26a7d670506';
-        const details = await axios(url);
-        return res.status(200).send({ data: details.data });
-    }
-    catch (err){
-        return res.status(400).send({err:err});
-    }
-  };
+module.exports = { getIndexData }
 
 
+  
+  
+  

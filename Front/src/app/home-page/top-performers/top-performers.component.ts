@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HomePageDataService } from 'src/app/Services/home-page-data.service';
 
 @Component({
   selector: 'app-top-performers',
@@ -7,35 +8,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopPerformersComponent implements OnInit {
 
-  stocks: any[] = [
-    {
-      name: 'Glenmark',
-      price: 855.50,
-      change: 78.55,
-      PrcntChng: 10.11,
-    },
-    {
-      name: 'Vedanta',
-      price: 222.55,
-      change: 14.20,
-      PrcntChng: 6.82,
-    },
-    {
-      name: 'Sun TV Network',
-      price: 612.15,
-      change: 32.35,
-      PrcntChng: 5.58,
-    },
-    {
-      name: 'Hindalco',
-      price: 492.65,
-      change: 25.80,
-      PrcntChng: 5.33,
-    },
-  ];
-  constructor() { }
-
+  stocks: any[] = [];
+  constructor(private readonly dataService: HomePageDataService) { }
+  
   ngOnInit(): void {
+    console.log('top performer component created');
+    this.dataService.fetchInitialTopGainersData();
+
+    this.dataService.topGainersData$.subscribe({
+      next: (res) => {
+        console.log('Data received:', res);
+        this.stocks = res?.data;
+      },
+      error: (err) => {
+        console.error('Error occurred:', err);
+      },
+      complete: () => {
+        console.log('Subscription completed');
+      }
+    });
   }
+
+
+
+
+  
 
 }

@@ -4,6 +4,9 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const http = require('http');
 const socketIo = require('socket.io');
+const logger = require("./logger");
+const morgan = require("morgan");
+
 
 const stock_fundamentalRouter=require('./src/Routers/stock-fundamental')
 const user_router=require('./src/Routers/users')
@@ -24,7 +27,23 @@ const io = socketIo(server, {
   });
 const port = process.env.PORT
 
+const morganFormat = ":method :url :status :response-time ms";
 
+app.use(
+  morgan(morganFormat, {
+    stream: {
+      write: (message) => {
+        const logObject = {
+          method: message.split(" ")[0],
+          url: message.split(" ")[1],
+          status: message.split(" ")[2],
+          responseTime: message.split(" ")[3],
+        };
+        logger.info(JSON.stringify(logObject));
+      },
+    },
+  })
+);
 
 app.use(stock_fundamentalRouter)
 app.use(user_router)

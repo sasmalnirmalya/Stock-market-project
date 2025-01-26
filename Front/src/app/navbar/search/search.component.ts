@@ -9,21 +9,60 @@ import { SearchService } from 'src/app/Services/search.service';
 })
 export class SearchComponent implements OnInit {
 
-  selectedCar: string='Search a stock';
-  placeHolder: string ='Search a stock'
+  stockId: string='Search a stock';
+  placeHolder: string ='Search a stock';
+  searchText:string='';
+  isSearchFocused:boolean=false;
 
   stockList:any[]=[];
-  constructor(private service: SearchService, private router: Router) { }
+  options:any[]=[];
+  constructor(private readonly service: SearchService, private readonly router: Router) { }
 
   ngOnInit(): void {
     this.service.getStockList().subscribe((res)=>{
       this.stockList=res;
+      this.setOptions();
     })
   }
 
-  onChange(){
-    if(this.selectedCar)
-    this.router.navigate(['/stock-details/' + this.selectedCar]);
+  onChange(stockId:string,stockName:string){
+    this.isSearchFocused=false;
+    this.searchText=stockName;
+    this.stockId=stockId;
+    if(this.searchText)
+    this.router.navigate(['/stock-details/' + this.stockId]);
+    
   }
+
+  timer:any;
+
+  onSearchTextChange(){
+    clearTimeout(this.timer);
+    this.timer=setTimeout(this.setOptions.bind(this),300);
+  }
+
+  setOptions(){
+    this.options = this.stockList.filter((item)=>{
+      return item.name.includes(this.searchText)
+    })
+  }
+
+  onFocusOut(event: FocusEvent) {
+    // Check if focus is lost to an element inside the dropdown
+    const target = event.relatedTarget as HTMLElement;
+    const isInsideDropdown =
+      target && target.closest('.search-option-block') !== null;
+  
+    if (!isInsideDropdown) {
+      this.isSearchFocused = false;
+    }
+  }
+
+  onClickOutside(event:any) {
+    if(event){
+      this.isSearchFocused = false;
+    }
+  }
+
 
 }

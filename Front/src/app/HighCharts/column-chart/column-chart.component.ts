@@ -28,7 +28,7 @@ export class ColumnChartComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if( changes['chartProp'] && changes['chartProp'].currentValue){
+    if( changes['chartProp']?.currentValue){
       this.chartOptions.series= [{
         type: 'column',
         data: this.chartProp.data.reverse(),
